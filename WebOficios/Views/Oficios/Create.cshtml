@@ -1,0 +1,99 @@
+﻿@model WebOficios.Models.Oficio
+
+@{
+    ViewData["Title"] = "Lista de Oficios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="width:100%;">
+    <div class="col-6">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+   <div class="col-4 ">
+        <button type="button" onclick=limpiar() class="btn btn-info form-control" data-bs-toggle="modal" 
+        data-bs-target="#myModal">Agregar nuevo</button>
+    </div>
+ </div>
+
+ <div class="p-4 border rounded bg-light">
+     <table id="tblData"  class="table table-responsive-xl" style="width:95%;">
+         <thead class="thead-dark">
+             <tr class="table-info">
+                 <th>No. Oficio</th>
+                 <th>Fecha</th>
+                 <th>Tipo Oficio</th>
+                 <th>Asunto</th>
+                 <th>Dirección</th>
+                 <th>Folio Solicitud</th>
+                 <th>Capturó</th>
+                 <th></th>
+             </tr>
+         </thead>
+
+     </table>
+
+ </div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h2 class="modal-title text-primary text-center">Capturar Oficio</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
+                        <div class="row p-3 border-0">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                        <input type="hidden" id="idDireccion" asp-for="IdOficio" />
+                        <div class="form-row" style="padding-top:14px;">
+                            <div class="form-group col-md-6">
+                                <label>Número de Oficio</label>
+                                <input asp-for="NOficio" id="idNumero" class="form-control" placeholder="Nombre de la Dirección" />
+                                <span asp-validation-for="NOficio" class="text-danger"></span>
+                                <label>Fecha</label>
+                                <input type="date" asp-for="Fecha" id="idFecha" class="form-control" />
+                                <span asp-validation-for="Fecha" class="text-danger"></span>
+                                <label>Tipo de Oficio</label>
+                                @Html.DropDownListFor(t=>t.IdTipo, new SelectList(ViewBag.Tipos, "IdTipo", "Nombre"),"-Selecciona-", new {@class="form-control"})
+                                <span asp-validation-for="IdTipo" class="text-danger"></span>
+                                <label>Dirección</label>
+                                @Html.DropDownListFor(d => d.IdDireccion,new SelectList(ViewBag.Direcciones, "IdDireccion", "Nombre"),"-Selecciona-", new {@class="form-control"}) 
+                                <span asp-validation-for="IdDireccion" class="text-danger"></span>
+                                <label>Asunto</label> 
+                                <input asp-for="Asunto" id="idAsunto" class="form-control" placeholder="Asunto" />
+                                 <span asp-validation-for="Asunto" class="text-danger"></span>
+                                 <label>Folio de la Solicitud</label>
+                                 <input asp-for="FolioSolicitud" id="idFolio" class="form-control" placeholder="Folio de la solicitud" />
+                                 <span asp-validation-for="FolioSolicitud" class="text-danger"></span>
+                                 <input type="file"  />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/oficios.js"></script>
+}
+
+
