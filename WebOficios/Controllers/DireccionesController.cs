@@ -64,7 +64,7 @@ namespace WebOficios.Controllers
                 { 
                     await _context.Direcciones.AddAsync(direccion);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Create), new { id = 0 });
+                    return RedirectToAction(nameof(Create), new { id = 0 }); //Lo añadí para que al momento de añadir uno nuevo no salte el modal del último registro
                 }
                 else
                 {
@@ -82,6 +82,22 @@ namespace WebOficios.Controllers
         {
             var lst = await _context.Direcciones.ToListAsync();
             return Json(new {data = lst});
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var direccion = await _context.Direcciones.FindAsync(id);
+            if (direccion == null)
+            {
+                return Json(new { success = false, message = "No se pudo borrar el registro" });
+            }
+
+            _context.Direcciones.Remove(direccion);
+            await _context.SaveChangesAsync();
+            return Json(new { success = true, message = "Dirección borrada con éxito" });
+
         }
     }
 }
