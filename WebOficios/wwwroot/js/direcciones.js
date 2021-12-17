@@ -8,11 +8,18 @@ $(document).ready(function () {
     }
 });
 
+function limpiar() {
+    var iddireccion = document.getElementById("idDireccion");
+    var idnombre = document.getElementById("idNombre");
+
+    iddireccion.value = 0;
+    idnombre.value = "";
+}
+
 function loadDatatable() {
     datatable = $('#tblData').DataTable({
-        "ajax": {
-            "url":"/Direcciones/Listado"
-        },
+
+        "ajax": { "url": "/Direcciones/Listado" },
 
         "columns": [
             { "data": "idDireccion", "width": "20%" },

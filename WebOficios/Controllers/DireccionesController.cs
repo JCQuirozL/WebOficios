@@ -64,13 +64,13 @@ namespace WebOficios.Controllers
                 { 
                     await _context.Direcciones.AddAsync(direccion);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Create));
+                    return RedirectToAction(nameof(Create), new { id = 0 });
                 }
                 else
                 {
                     _context.Direcciones.Update(direccion);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Create), new { Id = 0 });
+                    return RedirectToAction(nameof(Create), new { id=0 });
                 }
             }
 
