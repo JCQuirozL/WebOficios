@@ -22,7 +22,7 @@ function loadDatatable() {
         "ajax": { "url": "/Direcciones/Listado" },
 
         "columns": [
-            { "data": "idDireccion", "width": "20%" },
+            /*{ "data": "idDireccion", "width": "20%" },*/
             { "data": "nombre", "width": "60%" },
             
             {
@@ -38,7 +38,7 @@ function loadDatatable() {
                         </a>
                       </div>
                     `;
-                }, "width": "20%"
+                }, "width": "15%"
                 
             }
         ]

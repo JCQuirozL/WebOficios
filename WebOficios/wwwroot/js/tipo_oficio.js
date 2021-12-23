@@ -22,8 +22,8 @@ function loadDatatable() {
         "ajax": { "url": "/TipoOficios/Listado" },
 
         "columns": [
-            { "data": "idTipo", "width": "20%" },
-            { "data": "nombre", "width": "60%" },
+           
+            { "data": "nombre", "width": "70%" },
 
             {
                 "data": "idTipo",
@@ -38,7 +38,7 @@ function loadDatatable() {
                         </a>
                       </div>
                     `;
-                }, "width": "20%"
+                }, "width": "15%"
 
             }
         ]

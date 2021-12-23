@@ -5,6 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using WebOficios.Data;
 using WebOficios.Models;
 
+using System.Web;
+
+
+
+
 namespace WebOficios.Controllers
 {
     public class OficiosController : Controller
@@ -24,23 +29,47 @@ namespace WebOficios.Controllers
         [HttpGet]
         public async Task<ActionResult> Listado(int id)
         {
-            var lst = await _context.Oficios.ToListAsync();
+            var lst = (from Oficios in _context.Oficios
+                       join TipoOficios in _context.TipoOficios on Oficios.IdTipo equals TipoOficios.IdTipo
+                       join Direcciones in _context.Direcciones on Oficios.IdDireccion equals Direcciones.IdDireccion
+                       join Usuarios in _context.Usuarios on Oficios.IdUsuario equals Usuarios.IdUsuario
+                       select new
+                       {
+                           idOficio = Oficios.IdOficio,
+                           numOficio = Oficios.NOficio,
+                           fecha = Oficios.Fecha,
+                           tipoOficio = TipoOficios.Nombre,
+                           asunto = Oficios.Asunto,
+                           nombreDireccion = Direcciones.Nombre,
+                           folioSolicitud = Oficios.FolioSolicitud,
+                           usuario = Usuarios.Nombre
+
+
+                       }).ToList();
+           
             return Json(new { data = lst });
         }
 
+        [HttpGet]
         // GET: OficiosController/Create
         public async Task<ActionResult> Create(int? id)
         {
             Oficio Oficio = new Oficio();
             ViewBag.Tipos = _context.TipoOficios.Select(t => new { IdTipo = t.IdTipo, Nombre = t.Nombre }).ToList();
+             
             ViewBag.Direcciones = _context.Direcciones.Select(d => new { IdDireccion = d.IdDireccion, Nombre = d.Nombre }).ToList();
+
+
+
             if (id == null)
             {
+               
                 return View(Oficio);
             }
             else
             {
-                Oficio = await _context.Oficios.FindAsync(id);
+              
+                Oficio = await _context.Oficios.FindAsync(Convert.ToInt64(id));
                 return View(Oficio);
             }
         }
@@ -50,52 +79,56 @@ namespace WebOficios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Oficio oficio)
         {
-            
+           
+           
+
+                ViewBag.Tipos = (from Oficios in _context.Oficios
+                                 join TipoOficios in _context.TipoOficios on Oficios.IdTipo equals TipoOficios.IdTipo
+                                 select new
+                                 {
+                                     idTipo=TipoOficios.IdTipo,
+                                     Nombre = TipoOficios.Nombre
+                                 }).ToList();
+
+            ViewBag.Direcciones = (from Oficios in _context.Oficios
+                                   join Direcciones in _context.Direcciones on
+                                   Oficios.IdDireccion equals Direcciones.IdDireccion
+                                   select new
+                                   {
+                                       IdDireccion=Direcciones.IdDireccion,
+                                       Nombre=Direcciones.Nombre
+
+                                   }).ToList();
 
             if (ModelState.IsValid)
             {
                 if (oficio.IdOficio == 0) //Crear registro
                 {
+
+                   
                     await _context.Oficios.AddAsync(oficio);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Create), new { id = 0 }); //Lo añadí para que al momento de añadir uno nuevo no salte el modal del último registro
                 }
                 else
                 {
+                  
+
                     _context.Oficios.Update(oficio);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Create), new { id = 0 });
                 }
             }
 
-            return View(oficio);
+           return View(oficio);
         }
 
-        // GET: OficiosController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OficiosController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+           
 
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
-            var oficio = await _context.Oficios.FindAsync(id);
+            var oficio = await _context.Oficios.FindAsync(Convert.ToInt64(id));
             if (oficio == null)
             {
                 return Json(new { success = false, message = "No se pudo borrar el registro" });
