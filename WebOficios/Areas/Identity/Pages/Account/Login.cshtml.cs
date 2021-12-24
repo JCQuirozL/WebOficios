@@ -117,6 +117,7 @@ namespace WebOficios.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuario Loggeado.");
+                    returnUrl = Url.Content("~/Oficios/Create");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

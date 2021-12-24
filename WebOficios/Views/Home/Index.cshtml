@@ -2,7 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+<header style="background-image: url(../img/ayto.png); height: 30rem;background-size: cover;background-repeat: no-repeat;background-position: center center;">
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4 align-content-center">Portal de oficios</h1>
+    
+    <p>Unidad de Transparencia del H. Ayuntamiento de Manzanillo <p>@if(!User.Identity.IsAuthenticated){<a class="btn btn-outline-success" asp-area="Identity" asp-page="/Account/Login">Entrar</a>}</p> </p>
+    
 </div>
+</header>
