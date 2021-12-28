@@ -11,7 +11,7 @@
         <h1>@ViewData["Title"]</h1>
     </div>
    <div class="col-4 ">
-        <button type="button" onclick=limpiar() class="btn btn-info form-control" data-bs-toggle="modal" 
+        <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
         data-bs-target="#myModal">Agregar nuevo</button>
     </div>
  </div>
@@ -52,7 +52,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </div>
                         <input type="hidden" id="idOficio" asp-for="IdOficio" />
-                        <input type="hidden" id="idUsuario" asp-for="IdUsuario" />
+                        <input id="idCapturo" asp-for="Capturo" value="@User.Identity.Name" />
                         <div class="form-row" style="padding-top:14px;">
                             <div class="form-group col-md-6">
                                 <label>Número de Oficio</label>
@@ -100,5 +100,3 @@
     <partial name="_ValidationScriptsPartial" />
     <script src="~/js/oficios.js"></script>
 }
-
-

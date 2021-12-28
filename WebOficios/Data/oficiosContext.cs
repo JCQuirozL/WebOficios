@@ -60,6 +60,11 @@ namespace WebOficios.Data
                     .IsUnicode(false)
                     .HasColumnName("asunto");
 
+                entity.Property(e => e.Capturo)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("capturo");
+
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
                     .HasColumnName("fecha");
@@ -98,12 +103,6 @@ namespace WebOficios.Data
                     .HasForeignKey(d => d.IdTipo)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_oficio_tipo_oficio");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Oficios)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_oficio_usuario");
             });
 
             modelBuilder.Entity<TipoOficio>(entity =>

@@ -47,6 +47,44 @@ body {
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }
+
+    .color-enlaces:hover {
+        color: black;
+        transition: .5s ease;
+    }
+
+    .navegacion__enlace {
+        display: block;
+        text-align: center;
+        font-size: 1rem;
+        color: #CF7500;
+        padding: 1rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .barra {
+        display: flex;
+        gap:2rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .fondo-header {
+        background: url("img/header.jpg");
+        height: 35rem;
+        width:auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .oficio {
+        font-weight: 600;
+        color: #F0A500;
+    }
 }
 
 

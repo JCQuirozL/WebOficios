@@ -1,6 +1,7 @@
 ﻿var datatable;
 
 $(document).ready(function () {
+   
     loadDatatable();
     var id = document.getElementById("idOficio");
     if (id.value > 0) {
@@ -30,6 +31,7 @@ function limpiar() {
 }
 
 function loadDatatable() {
+
     datatable = $('#tblData').DataTable({
 
         "language": {
@@ -42,13 +44,20 @@ function loadDatatable() {
            
             
             { "data": "numOficio", "width": "10%" },
-            { "data": "fecha", "width": "1%"  },
+            {
+                "data": "fecha",
+                "render": function (data) {
+                    // Se debe multiplicar por 1000, porque Date considera milisegundos
+                    return new Date(data).toLocaleDateString();
+                }, 
+                "width": "1%"
+                },
+
             { "data": "tipoOficio", "width": "20%" },
             { "data": "asunto", "width": "10%" },
             { "data": "nombreDireccion", "width": "20%"  },
             { "data": "folioSolicitud", "width": "10%"   },
             { "data": "usuario", "width": "10%" },
-            
 
 
             {
@@ -56,10 +65,10 @@ function loadDatatable() {
                 "render": function (data) {
                     return `
                       <div>
-                        <a href="/Oficios/Create/${data}" class="btn btn-outline-success" style="cursor:pointer;">
+                        <a href="/Oficios/Create/${data}" class="btn btn-outline-warning" style="cursor:pointer;">
                             Editar
                         </a>
-                        <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer;">
+                        <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-outline-dark " style="cursor:pointer;">
                             Borrar
                         </a>
                       </div>

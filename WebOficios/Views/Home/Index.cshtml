@@ -2,11 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<header style="background-image: url(../img/ayto.png); height: 30rem;background-size: cover;background-repeat: no-repeat;background-position: center center;">
+<header style=" height: 30rem; display:flex; justify-content:center; align-items:center; ">
 <div class="text-center">
-    <h1 class="display-4 align-content-center">Portal de oficios</h1>
+    <h1 class="display-4 align-content-center">Portal<span class="oficio">Oficios</span></h1>
     
-    <p>Unidad de Transparencia del H. Ayuntamiento de Manzanillo <p>@if(!User.Identity.IsAuthenticated){<a class="btn btn-outline-success" asp-area="Identity" asp-page="/Account/Login">Entrar</a>}</p> </p>
+    <p>Unidad de Transparencia del H. Ayuntamiento de Manzanillo <p>@if(!User.Identity.IsAuthenticated){<a class="btn btn-outline-success" asp-area="Identity" asp-page="/Account/Login">Entrar</a>}</p> 
     
 </div>
 </header>

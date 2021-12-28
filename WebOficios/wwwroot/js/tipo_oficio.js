@@ -30,10 +30,10 @@ function loadDatatable() {
                 "render": function (data) {
                     return `
                       <div>
-                        <a href="/TipoOficios/Create/${data}" class="btn btn-outline-success" style="cursor:pointer;">
+                        <a href="/TipoOficios/Create/${data}" class="btn btn-warning" style="cursor:pointer;">
                             Editar
                         </a>
-                        <a onclick=Delete("/TipoOficios/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer;">
+                        <a onclick=Delete("/TipoOficios/Delete/${data}") class="btn btn-outline-dark " style="cursor:pointer;">
                             Borrar
                         </a>
                       </div>
