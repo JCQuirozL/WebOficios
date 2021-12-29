@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOficios.Models
 {
@@ -27,6 +29,10 @@ namespace WebOficios.Models
 
         [Required(ErrorMessage = "No puede quedar en blanco")]
         public string? FolioSolicitud { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage = "Por favor suba un archivo")]
+        public IFormFile FormFile { get; set; }
         public byte[]? PdfArchivo { get; set; }
         public string? Realname { get; set; }
         public int? IdUsuario { get; set; }

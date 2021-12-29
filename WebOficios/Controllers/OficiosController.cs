@@ -5,19 +5,23 @@ using Microsoft.EntityFrameworkCore;
 using WebOficios.Data;
 using WebOficios.Models;
 
-using System.Web;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 
 namespace WebOficios.Controllers
 {
     public class OficiosController : Controller
     {
         private readonly oficiosContext _context;
+        private readonly IWebHostEnvironment _enviroment;
 
-        public OficiosController(oficiosContext context)
+        public OficiosController(oficiosContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _enviroment = env;  
         }
+
+        
+        
         // GET: OficiosController
         public ActionResult Index()
         {
@@ -51,7 +55,7 @@ namespace WebOficios.Controllers
         // GET: OficiosController/Create
         public async Task<ActionResult> Create(int? id)
         {
-            Oficio Oficio = new Oficio();
+            Oficio Oficio = new();
             ViewBag.Tipos = _context.TipoOficios.Select(t => new { IdTipo = t.IdTipo, Nombre = t.Nombre}).ToList();
 
             ViewBag.Direcciones = _context.Direcciones.Select(d => new { IdDireccion = d.IdDireccion, Nombre = d.Nombre}).ToList();
@@ -65,7 +69,7 @@ namespace WebOficios.Controllers
             }
             else
             {
-
+                
                 Oficio = await _context.Oficios.FindAsync(Convert.ToInt64(id));
                 return View(Oficio);
             }
@@ -74,35 +78,33 @@ namespace WebOficios.Controllers
         // POST: OficiosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Oficio oficio)
+        public async Task<ActionResult> Create(Oficio oficio )
         {
+
+            
 
             ViewBag.Tipos = _context.TipoOficios.Select(t => new { IdTipo = t.IdTipo, Nombre = t.Nombre }).ToList();
 
             ViewBag.Direcciones = _context.Direcciones.Select(d => new { IdDireccion = d.IdDireccion, Nombre = d.Nombre }).ToList();
 
-            //ViewBag.Tipos = (from Oficios in _context.Oficios
-            //                 join TipoOficios in _context.TipoOficios on Oficios.IdTipo equals TipoOficios.IdTipo
-            //                 select new
-            //                 {
-            //                     IdTipo = TipoOficios.IdTipo,
-            //                     Nombre = TipoOficios.Nombre
-            //                 }).ToList();
-
-            //ViewBag.Direcciones = (from Oficios in _context.Oficios
-            //                       join Direcciones in _context.Direcciones on
-            //                       Oficios.IdDireccion equals Direcciones.IdDireccion
-            //                       select new
-            //                       {
-            //                           IdDireccion = Direcciones.IdDireccion,
-            //                           Nombre = Direcciones.Nombre
-
-            //                       }).ToList();
-
+           
             if (ModelState.IsValid)
             {
+                
+
                 if (oficio.IdOficio == 0) //Crear registro
                 {
+                   
+
+                        using (var ms = new MemoryStream())
+                        {
+                            await oficio.FormFile.CopyToAsync(ms);
+
+
+                            oficio.PdfArchivo = ms.ToArray();
+                            
+                                
+                        };
                     
 
                     await _context.Oficios.AddAsync(oficio);
@@ -111,6 +113,15 @@ namespace WebOficios.Controllers
                 }
                 else
                 {
+                    using (var ms = new MemoryStream())
+                    {
+                        await oficio.FormFile.CopyToAsync(ms);
+
+
+                        oficio.PdfArchivo = ms.ToArray();
+
+
+                    };
 
 
                     _context.Oficios.Update(oficio);
@@ -137,6 +148,36 @@ namespace WebOficios.Controllers
             _context.Oficios.Remove(oficio);
             await _context.SaveChangesAsync();
             return Json(new { success = true, message = "Oficio borrado con éxito" });
+        }
+
+      [Route("~/OnPostDownLoadAsync/{id}")]
+        public async Task<ActionResult> OnPostDownLoadAsync(int id)
+        {
+
+            using (var db = new oficiosContext()) 
+            { 
+                var miOficio = await db.Oficios.FindAsync(Convert.ToInt64(id));
+                return File(miOficio.PdfArchivo, "application/jpg", fileDownloadName: $"Oficio número {miOficio.NOficio}.pdf");
+            }
+            //if (miOficio == null)
+            //{
+            //    return NotFound();
+
+            //}
+            //if (miOficio.PdfArchivo == null)
+            //{
+            //    return NotFound();
+            //}
+            //else
+            //{
+            //    byte[] byteArr = miOficio.PdfArchivo;
+            //    string mimeType = "application/pdf";
+
+            //    return new FileContentResult(byteArr, mimeType)
+            //    {
+            //        FileDownloadName = $"Oficio número {miOficio.NOficio}.pdf"
+            //    };
+            //}
         }
 
 

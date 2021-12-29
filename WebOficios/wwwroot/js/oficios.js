@@ -53,9 +53,9 @@ function loadDatatable() {
                 "width": "1%"
                 },
 
-            { "data": "tipoOficio", "width": "20%" },
+            { "data": "tipoOficio", "width": "10%" },
             { "data": "asunto", "width": "10%" },
-            { "data": "nombreDireccion", "width": "20%"  },
+            { "data": "nombreDireccion", "width": "10%"  },
             { "data": "folioSolicitud", "width": "10%"   },
             { "data": "usuario", "width": "10%" },
 
@@ -65,15 +65,18 @@ function loadDatatable() {
                 "render": function (data) {
                     return `
                       <div>
-                        <a href="/Oficios/Create/${data}" class="btn btn-outline-warning" style="cursor:pointer;">
+                        <a href="/Oficios/Create/${data}" class="btn btn-warning" style="cursor:pointer;">
                             Editar
                         </a>
-                        <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-outline-dark " style="cursor:pointer;">
+                        <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-outline-danger " style="cursor:pointer;">
                             Borrar
+                        </a>
+                        <a target="_blank" href="/OnPostDownLoadAsync/${data}" class="btn btn-dark ">
+                            Descarga
                         </a>
                       </div>
                     `;
-                }, "width": "30%"
+                }, "width": "80%"
 
             }
         ]
@@ -104,3 +107,6 @@ function Delete(url) {
         }
     });
 }
+
+
+
