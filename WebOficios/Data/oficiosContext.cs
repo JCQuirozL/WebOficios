@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using WebOficios.Models;
@@ -17,6 +18,7 @@ namespace WebOficios.Data
         {
         }
 
+        //public DbSet<User> Users { get; set; }
         public virtual DbSet<Direccion> Direcciones { get; set; } = null!;
         public virtual DbSet<Oficio> Oficios { get; set; } = null!;
         public virtual DbSet<TipoOficio> TipoOficios { get; set; } = null!;
@@ -27,7 +29,7 @@ namespace WebOficios.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=192.168.1.95;Initial catalog=oficios;User=CXP;Password=20033029Jcq$");
+                optionsBuilder.UseSqlServer("Server=T1\\SQLEXPRESS;Initial catalog=oficios;User=CXP;Password=20033029Jcq$");
             }
         }
 

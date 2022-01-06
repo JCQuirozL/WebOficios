@@ -88,19 +88,29 @@ namespace WebOficios.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!string.IsNullOrEmpty(ErrorMessage))
+            if (!User.Identity.IsAuthenticated)
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+
+
+
+                if (!string.IsNullOrEmpty(ErrorMessage))
+                {
+                    ModelState.AddModelError(string.Empty, ErrorMessage);
+                }
+
+                returnUrl ??= Url.Content("~/");
+
+                // Clear the existing external cookie to ensure a clean login process
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+                ReturnUrl = returnUrl;
             }
-
-            returnUrl ??= Url.Content("~/");
-
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            ReturnUrl = returnUrl;
+            else
+            {
+                returnUrl ??= Url.Content("~/");
+            }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

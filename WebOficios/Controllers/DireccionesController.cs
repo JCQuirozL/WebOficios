@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebOficios.Data;
 using WebOficios.Models;
@@ -14,6 +15,8 @@ namespace WebOficios.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Index(int pg = 1)
         {
             
@@ -36,11 +39,11 @@ namespace WebOficios.Controllers
             return View(direcciones);
         }
       
-
+        [Authorize]
         public async Task<IActionResult> Create(int? id)
         {
             Direccion direccion = new Direccion();
-
+            
             if (id == null) 
             { 
                 return View(direccion);

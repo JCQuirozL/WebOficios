@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OficiosApp.MainPage" Title="Lista de Oficios">
+    
+    <StackLayout Padding="15">
+
+      <!--  <Label Text="Lista de Oficios" 
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               FontSize="Title"/>-->
+
+        <ListView x:Name="ListaOficios">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding noficio}" Detail="{Binding asunto}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--<Button x:Name="BtnOficios" Clicked="BtnOficios_Clicked" Text="Lista de Oficios" />-->  
+        <Button x:Name="BtnAgregar" Clicked="BtnAgregar_Clicked" Text="Agregar Nuevo" />
+    </StackLayout>
+    
+    
+
+</ContentPage>

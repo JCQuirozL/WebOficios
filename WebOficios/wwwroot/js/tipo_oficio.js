@@ -33,7 +33,7 @@ function loadDatatable() {
                         <a href="/TipoOficios/Create/${data}" class="btn btn-warning" style="cursor:pointer;">
                             Editar
                         </a>
-                        <a onclick=Delete("/TipoOficios/Delete/${data}") class="btn btn-outline-danger " style="cursor:pointer;">
+                        <a onclick=Delete("/TipoOficios/Delete/${data}") class="btn btn-outline-danger" style="cursor:pointer;">
                             Borrar
                         </a>
                       </div>

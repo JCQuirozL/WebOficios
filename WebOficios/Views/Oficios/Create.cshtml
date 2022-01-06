@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Html.AntiForgeryToken()
 <div class="row" style="width:100%;">
     <div class="col-6">
         <h1>@ViewData["Title"]</h1>
@@ -52,7 +53,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </div>
                         <input type="hidden" id="idOficio" asp-for="IdOficio" />
-                        <input id="idCapturo" asp-for="Capturo" value="@User.Identity.Name" />
+                        <input type="hidden" id="idCapturo" asp-for="Capturo" value="@User.Identity.Name" />
                         <div class="form-row" style="padding-top:14px;">
                             <div class="form-group col-md-6">
                                 <label>Número de Oficio</label>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Http;
 using WebOficios.Models;
 
 namespace WebOficios.Filtros
@@ -7,7 +8,7 @@ namespace WebOficios.Filtros
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
+             
             
             base.OnActionExecuting(filterContext);
         }

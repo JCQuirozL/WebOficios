@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using WebOficios;
 using WebOficios.Data;
-
-
+using WebOficios.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
+//builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
@@ -67,6 +67,19 @@ else
     app.UseHsts();
 }
 
+
+
+app.UseStatusCodePages(context => {
+    var response = context.HttpContext.Response;
+
+    if (response.StatusCode == (int)HttpStatusCode.Unauthorized ||
+        response.StatusCode == (int)HttpStatusCode.Forbidden)
+        response.Redirect("/Authentication");
+    return global::System.Threading.Tasks.Task.CompletedTask;
+});
+
+
+app.UseDeveloperExceptionPage();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -74,7 +87,7 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

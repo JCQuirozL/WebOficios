@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +21,8 @@ namespace WebOficios.Controllers
             _enviroment = env;  
         }
 
-        
-        
+        [ValidateAntiForgeryToken]
+        [Authorize]
         // GET: OficiosController
         public ActionResult Index()
         {
@@ -48,7 +49,7 @@ namespace WebOficios.Controllers
 
                        }).ToList();
 
-            return Json(new { data = lst });
+            return  Json (new  {  data = lst });
         }
 
         [HttpGet]
@@ -109,7 +110,7 @@ namespace WebOficios.Controllers
 
                     await _context.Oficios.AddAsync(oficio);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Create)); //Lo añadí para que al momento de añadir uno nuevo no salte el modal del último registro
+                    return RedirectToAction(nameof(Create), new { id = 0 }); //Lo añadí para que al momento de añadir uno nuevo no salte el modal del último registro
                 }
                 else
                 {
@@ -159,25 +160,7 @@ namespace WebOficios.Controllers
                 var miOficio = await db.Oficios.FindAsync(Convert.ToInt64(id));
                 return File(miOficio.PdfArchivo, "application/jpg", fileDownloadName: $"Oficio número {miOficio.NOficio}.pdf");
             }
-            //if (miOficio == null)
-            //{
-            //    return NotFound();
-
-            //}
-            //if (miOficio.PdfArchivo == null)
-            //{
-            //    return NotFound();
-            //}
-            //else
-            //{
-            //    byte[] byteArr = miOficio.PdfArchivo;
-            //    string mimeType = "application/pdf";
-
-            //    return new FileContentResult(byteArr, mimeType)
-            //    {
-            //        FileDownloadName = $"Oficio número {miOficio.NOficio}.pdf"
-            //    };
-            //}
+            
         }
 
 

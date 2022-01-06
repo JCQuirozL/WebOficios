@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OficiosApp.AddOficioPage">
+    <ContentPage.Content>
+
+        <StackLayout Padding="15">
+            <AbsoluteLayout>
+                <StackLayout>
+
+                    <Entry x:Name="txtNOficio" Placeholder="Número Oficio"
+                       HorizontalOptions="FillAndExpand" />
+
+                    <DatePicker x:Name="dtFecha" MinimumDate="01/01/2018"/>
+
+                    <Picker x:Name="pTipo" Title="Selecciona un Tipo de Oficio" 
+                            ItemsSource="{Binding resultado}"
+                            ItemDisplayBinding="{Binding Name}"/>
+
+                    <Picker x:Name="pDireccion" Title="Selecciona una Dirección" />
+
+                    <Entry x:Name="txtFolio" Placeholder="Folio Solicitud"
+                       HorizontalOptions="FillAndExpand" />
+
+                    <Entry x:Name="txtAsunto" Placeholder="Asunto"
+                       HorizontalOptions="FillAndExpand" />
+
+
+                </StackLayout>
+
+
+
+            </AbsoluteLayout>
+
+            <StackLayout 
+                Orientation="Vertical"
+                VerticalOptions="EndAndExpand">
+                    <Button x:Name="BtnGuardar"  Text="Guardar"/>
+                    <Button x:Name="BtnCancelar"  Text="Cancelar"/>
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

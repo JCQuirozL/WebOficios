@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebOficios.Data;
 using WebOficios.Models;
@@ -15,8 +16,11 @@ namespace WebOficios.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
+
             return View();
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebOficios.Data;
 using WebOficios.Models;
@@ -20,6 +21,7 @@ namespace WebOficios.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Create(int? id )
         {
             TipoOficio tOficio = new TipoOficio();
