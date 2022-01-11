@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using OficiosApp.Models;
-using OficiosApp.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +26,7 @@ namespace OficiosApp
 
 
             GetTipoOficios();
+            GetDirecciones();
 
         }
         private async void GetTipoOficios()
@@ -47,6 +47,28 @@ namespace OficiosApp
 
                 pTipo.ItemsSource = resultado;
                 
+                //ListaOficios.ItemsSource = resultado;
+            }
+        }
+
+        private async void GetDirecciones()
+        {
+            var request = new HttpRequestMessage();
+            request.RequestUri = new Uri("http://portaloficios.ddns.net/api/Direcciones");
+            request.Method = HttpMethod.Get;
+            request.Headers.Add("Accept", "application/json");
+
+            var client = new HttpClient();
+
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<GetDirecciones>>(content);
+
+                pDireccion.ItemsSource = resultado;
+
                 //ListaOficios.ItemsSource = resultado;
             }
         }

@@ -17,7 +17,9 @@
                             ItemsSource="{Binding resultado}"
                             ItemDisplayBinding="{Binding Name}"/>
 
-                    <Picker x:Name="pDireccion" Title="Selecciona una Dirección" />
+                    <Picker x:Name="pDireccion" Title="Selecciona una Dirección"
+                            ItemsSource="{Binding resultado}"
+                            ItemDisplayBinding="{Binding name}"/>
 
                     <Entry x:Name="txtFolio" Placeholder="Folio Solicitud"
                        HorizontalOptions="FillAndExpand" />

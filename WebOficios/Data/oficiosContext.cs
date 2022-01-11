@@ -7,7 +7,7 @@ using WebOficios.Models;
 
 namespace WebOficios.Data
 {
-    public partial class oficiosContext : DbContext
+    public partial class oficiosContext : IdentityDbContext
     {
         public oficiosContext()
         {
@@ -35,6 +35,8 @@ namespace WebOficios.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Direccion>(entity =>
             {
                 entity.HasKey(e => e.IdDireccion);

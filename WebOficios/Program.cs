@@ -26,9 +26,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<oficiosContext>();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
 
 
 builder.Services.AddDbContext<oficiosContext>();

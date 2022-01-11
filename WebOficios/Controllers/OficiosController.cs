@@ -158,7 +158,7 @@ namespace WebOficios.Controllers
             using (var db = new oficiosContext()) 
             { 
                 var miOficio = await db.Oficios.FindAsync(Convert.ToInt64(id));
-                return File(miOficio.PdfArchivo, "application/jpg", fileDownloadName: $"Oficio número {miOficio.NOficio}.pdf");
+                return File(miOficio.PdfArchivo, "application/pdf", fileDownloadName: $"Oficio número {miOficio.NOficio}.pdf");
             }
             
         }
