@@ -1,40 +1,44 @@
-﻿@model WebOficios.Models.TipoOficio
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model WebOficios.Models.TipoOficio
 
 @{
-    ViewData["Title"] = "Lista de Tipos de Oficios";
+    ViewData["Title"] = "Tipos de Oficios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row" style="width:100%;">
-    <div class="col-6">
-        <h1>@ViewData["Title"]</h1>
+    <div class="row" style="width:100%;">
+        <div class="col-6">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+       <div class="col-4 ">
+            <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
+            data-bs-target="#myModal">Agregar nuevo Tipo</button>
+        </div>
+     </div>
+
+    <div class="p-4 border rounded bg-light">
+        <table id="tblData"  class="table table-responsive-xl" style="width:95%;">
+            <thead class="thead-dark">
+                <tr class="table-info">
+
+                    <th>Nombre</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+        </table>
+
     </div>
-   <div class="col-4 ">
-        <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
-        data-bs-target="#myModal">Agregar nuevo Tipo</button>
-    </div>
- </div>
 
- <div class="p-4 border rounded bg-light">
-     <table id="tblData"  class="table table-responsive-xl" style="width:95%;">
-         <thead class="thead-dark">
-             <tr class="table-info">
-                 
-                 <th>Tipo</th>
-                 <th></th>
-             </tr>
-         </thead>
-
-     </table>
-
- </div>
 
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <form method="post" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h2 class="modal-title text-primary text-center">Ingresar Tipo de Oficio</h2>
+                    <h2 class="modal-title text-dark text-center">Ingresar Tipo de oficio</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
                 </div>
 
@@ -46,7 +50,7 @@
                         <input type="hidden" id="idTipo" asp-for="IdTipo" />
                         <div class="form-row" style="padding-top:14px;">
                             <div class="form-group col-md-6">
-                                <label>Tipo</label>
+                                <label>Nombre</label>
                                 <input asp-for="Nombre" id="idNombre" class="form-control" placeholder="Tipo de Oficio" />
                                 <span asp-validation-for="Nombre" class="text-danger"></span>
                             </div>
@@ -57,7 +61,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" >Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
 

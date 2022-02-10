@@ -52,6 +52,7 @@ namespace WebOficios.Controllers
             return  Json (new  {  data = lst });
         }
 
+        [Authorize]
         [HttpGet]
         // GET: OficiosController/Create
         public async Task<ActionResult> Create(int? id)

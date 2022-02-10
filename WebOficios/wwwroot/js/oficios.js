@@ -68,12 +68,16 @@ function loadDatatable() {
                         <a href="/Oficios/Create/${data}" class="btn btn-warning" style="cursor:pointer;">
                             Editar
                         </a>
-                        <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-outline-danger " style="cursor:pointer;">
-                            Borrar
-                        </a>
-                        <a target="_blank" href="/OnPostDownLoadAsync/${data}" class="btn btn-dark ">
-                            Descarga
-                        </a>
+                        <div class="p-1">
+                            <a onclick=Delete("/Oficios/Delete/${data}") class="btn btn-outline-danger " style="cursor:pointer;">
+                                Borrar
+                            </a>
+                        </div>
+                        <div class="p-1">
+                            <a target="_blank" href="/OnPostDownLoadAsync/${data}" class="btn btn-dark ">
+                                Descarga
+                            </a>
+                        </div>
                       </div>
                     `;
                 }, "width": "80%"

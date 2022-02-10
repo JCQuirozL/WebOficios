@@ -29,7 +29,8 @@ namespace WebOficios.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
         }
-
+        
+        
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -86,12 +87,11 @@ namespace WebOficios.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!User.Identity.IsAuthenticated)
             {
-
-
 
                 if (!string.IsNullOrEmpty(ErrorMessage))
                 {
@@ -109,7 +109,7 @@ namespace WebOficios.Areas.Identity.Pages.Account
             }
             else
             {
-                returnUrl ??= Url.Content("~/");
+                returnUrl ??= Url.Content("~/Views/Shared/Error.cshtml");
             }
         }
 

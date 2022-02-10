@@ -1,35 +1,35 @@
-﻿@model WebOficios.Models.Direccion
+﻿
+@model WebOficios.Models.Direccion
 
 @{
-    ViewData["Title"] = "Lista de Direcciones";
+    ViewData["Title"] = "Direcciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+    <div class="row" style="width:100%;">
+        <div class="col-6">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+       <div class="col-4 ">
+            <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
+            data-bs-target="#myModal">Agregar nueva Dirección</button>
+        </div>
+     </div>
 
-<div class="row" style="width:100%;">
-    <div class="col-6">
-        <h1>@ViewData["Title"]</h1>
+    <div class="p-4 border rounded bg-light">
+        <table id="tblData"  class="table table-responsive-xl" style="width:95%;">
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    @*<th>Id</th>*@
+                    <th>Nombre</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+        </table>
+
     </div>
-   <div class="col-4 ">
-        <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
-        data-bs-target="#myModal">Agregar nueva Dirección</button>
-    </div>
- </div>
-
- <div class="p-4 border rounded bg-light">
-     <table id="tblData"  class="table table-responsive-xl" style="width:95%;">
-         <thead class="thead-dark">
-             <tr class="table-info">
-                 @*<th>Id</th>*@
-                 <th>Nombre</th>
-                 <th></th>
-             </tr>
-         </thead>
-
-     </table>
-
- </div>
 
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -37,7 +37,7 @@
         <div class="modal-content">
             <form method="post" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h2 class="modal-title text-primary text-center">Ingresar Dirección</h2>
+                    <h2 class="modal-title text-dark text-center">Ingresar Dirección</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
                 </div>
 
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" >Cancelar</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" >Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
 

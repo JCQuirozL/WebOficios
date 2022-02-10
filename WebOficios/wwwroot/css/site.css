@@ -4,6 +4,9 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
+
+
+
 body {
     overflow-x: hidden;
 }
@@ -34,10 +37,6 @@ body {
     margin-left: 0;
 }
 
-@media (min-width: 768px) {
-    #sidebar-wrapper {
-        margin-left: 0;
-    }
 
     #page-content-wrapper {
         min-width: 0;
@@ -53,39 +52,97 @@ body {
         transition: .5s ease;
     }
 
-    .navegacion__enlace {
-        display: block;
-        text-align: center;
-        font-size: 1rem;
-        color: #CF7500;
-        padding: 1rem;
-    }
+  
+        .navegacion__enlace {
+            display: block;
+            text-align: center;
+            font-size: 1rem;
+            font-weight:600;
+            color: #CF7500;
+            padding: 1rem;
+        }
+    
 
-    a {
-        text-decoration: none;
-    }
+        @media (min-width: 768px) {
+            .navegacion {
+                display: flex;
+                align-items:center;
+                gap: 2rem;
+            }
+        }
 
-    .barra {
-        display: flex;
-        gap:2rem;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .contenedor {
+            width: min(90%, 120rem);
+            margin: 0 auto;
+        }
 
-    .fondo-header {
-        background: url("img/header.jpg");
-        height: 35rem;
-        width:auto;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
+        .contenedor-lp {
+            width: min(100%,45rem);
+            margin: 0 auto;
+          
+        }
 
-    .oficio {
-        font-weight: 600;
-        color: #F0A500;
-    }
-}
+        a {
+            text-decoration: none;
+        }
+
+        .barra {
+            padding-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .barra {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+            }
+        }
+
+        .centrar{
+            padding:2rem;
+            display:flex;
+            justify-content:center;
+        }
+
+        .barra-layout {
+            padding-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .barra-layout {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .fondo-header {
+            background: url("img/header.jpg");
+            height: 35rem;
+            width: auto;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .portal {
+            font-size: 2rem;
+            color: #000000;
+        }
+
+        .oficio {
+            font-size: 2rem;
+            color: #F0A500;
+            font-weight:600;
+        }
+
+        .image {
+            height: 60%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    
 
 
 /*html {

@@ -1,41 +1,45 @@
-﻿@model WebOficios.Models.Oficio
+﻿
+@model WebOficios.Models.Oficio
 
 
 @{
-    ViewData["Title"] = "Lista de Oficios";
+    ViewData["Title"] = "Oficios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.AntiForgeryToken()
-<div class="row" style="width:100%;">
-    <div class="col-6">
-        <h1>@ViewData["Title"]</h1>
+
+    @Html.AntiForgeryToken()
+    <div class="row" style="width:100%;">
+        <div class="col-6">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+        <div class="col-4 ">
+            <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
+            data-bs-target="#myModal">Agregar nuevo</button>
+        </div>
     </div>
-   <div class="col-4 ">
-        <button type="button" onclick=limpiar() class="btn btn-dark form-control" data-bs-toggle="modal" 
-        data-bs-target="#myModal">Agregar nuevo</button>
+
+    <div class=" table-responsive p-4 border rounded bg-light">
+        <table id="tblData"  class="table" >
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    @*<th>Id</th>*@
+                    <th >No. Oficio</th>
+                    <th>Fecha</th>
+                    <th>Tipo Oficio</th>
+                    <th>Asunto</th>
+                    <th>Dirección</th>
+                    <th>Folio Solicitud</th>
+                    <th>Capturó</th>
+                    <th> </th>
+                </tr>
+            </thead>
+
+        </table>
+
     </div>
- </div>
 
- <div class="p-4 border rounded bg-light">
-     <table id="tblData"  class="table table-responsive-xl" style="width:130%;">
-         <thead class="thead-dark">
-             <tr class="table-info">
-                 @*<th>Id</th>*@
-                 <th>No. Oficio</th>
-                 <th>Fecha</th>
-                 <th>Tipo Oficio</th>
-                 <th>Asunto</th>
-                 <th>Dirección</th>
-                 <th>Folio Solicitud</th>
-                 <th>Capturó</th>
-                 <th> </th>
-             </tr>
-         </thead>
-
-     </table>
-
- </div>
+ 
 
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -43,7 +47,7 @@
         <div class="modal-content">
             <form asp-controller="Oficios" asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h2 class="modal-title text-primary text-center">Capturar Oficio</h2>
+                    <h2 class="modal-title text-dark text-center">Capturar oficio</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
                 </div>
 
@@ -85,7 +89,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancelar</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" >Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
                     
                 </div>
