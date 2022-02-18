@@ -5,8 +5,6 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
-
-
 body {
     overflow-x: hidden;
 }
@@ -46,6 +44,14 @@ body {
     #wrapper.toggled #sidebar-wrapper {
         margin-left: -15rem;
     }
+    a:hover, button:hover{
+        transform:scale(1.05);
+    }
+
+    a:active, button:active {
+        transform: scale(.9);
+    }
+
 
     .color-enlaces:hover {
         color: black;
@@ -73,93 +79,131 @@ body {
 
         .contenedor {
             width: min(90%, 120rem);
-            margin: 0 auto;
+            margin: auto auto 5rem auto;
         }
 
         .contenedor-lp {
-            width: min(100%,45rem);
+            width: min(90%, 120rem);
             margin: 0 auto;
-          
+            text-align: center;
         }
-
-        a {
-            text-decoration: none;
-        }
-
-        .barra {
-            padding-top: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .barra {
-                display: flex;
-                justify-content: end;
-                align-items: center;
-            }
-        }
-
-        .centrar{
-            padding:2rem;
-            display:flex;
-            justify-content:center;
-        }
-
-        .barra-layout {
-            padding-top: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .barra-layout {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .fondo-header {
-            background: url("img/header.jpg");
-            height: 35rem;
-            width: auto;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-
-        .portal {
-            font-size: 2rem;
-            color: #000000;
-        }
-
-        .oficio {
-            font-size: 2rem;
-            color: #F0A500;
-            font-weight:600;
-        }
-
-        .image {
-            height: 60%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-    
-
-
-/*html {
-  font-size: 14px;
-}
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    .contenedor-lp {
+    }
 }
+    a {
+        text-decoration: none;
+    }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
+    .table-container{
+        padding: 2rem;
+    }
+    .barra {
+        padding-top: 1rem;
+    }
 
-body {
-  margin-bottom: 60px;
-}*/
+    @media (min-width: 768px) {
+        .barra {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+    }
+
+        .logout {
+            font-weight: 700;
+            background-color:transparent;
+            color:#CF7500;
+            border-color:chocolate;
+            border-radius:10%;
+            padding:10px;
+        }
+
+        .logout:hover{
+            background-color:chocolate;
+            color:white;
+        }
+
+        .register {
+            margin: 15px;
+            padding: 10px;
+            color: black;
+            border-color: chocolate;
+    
+        }
+
+      
+
+    .register:hover {
+        color: black;
+        background-color: white;
+    }
+
+    @media (min-width: 768px) {
+        .centrar {
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            gap: 1rem;
+        }
+    }
+
+    .centrar {
+        margin: 2rem;
+    }
+
+
+
+    .barra-layout {
+        padding-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .barra-layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .header-container {
+        margin: auto;
+        height: 60vh;
+    }
+
+    .font-weight-bold {
+        font-weight: 600;
+    }
+
+    .fondo-header {
+        background: url("img/header.jpg");
+        height: 35rem;
+        width: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .portal {
+        font-size: 2rem;
+        color: #519259;
+    }
+
+    .oficio {
+        font-size: 2rem;
+        color: #F0A500;
+        font-weight: 600;
+    }
+
+    .image {
+        height: 60%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+
+
+
+ 

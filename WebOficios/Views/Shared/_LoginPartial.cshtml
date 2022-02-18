@@ -18,9 +18,11 @@
    
         
        <form  class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-           <div class="centrar">
-            <button  type="submit" class="navegacion__enlace btn btn-outline-dark">Logout</button>
-            </div>
+           
+                <div class="centrar">
+                    <button  type="submit" class="logout">Logout</button>
+                    <a class="nav-link font-weight-bold register" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+                    </div>
       </form>
       
       
@@ -28,10 +30,10 @@
 else
 {
  
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link text-dark font-weight-bold" asp-area="Identity" asp-page="/Account/Register">Register</a>
     
    
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-dark font-weight-bold" asp-area="Identity" asp-page="/Account/Login">Login</a>
  
 }
 
